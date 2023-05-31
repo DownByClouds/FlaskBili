@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Bilibili视频解析器！</title>
+        <!--Font Awesome 图标link -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="../static/css/login.css">
+        <link rel="stylesheet" href="../static/css/register.css">
+        <link rel="stylesheet" href="../static/css/history.css">
+        <!--link rel="stylesheet" href="D:/font-awesome-4.7.0/css/font-awesome.css"-->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+        <style type="text/css">
+            ul.breadcrumb {
+                padding: 8px 16px;
+                list-style: none;
+                background-color: #eee;
+            }
+            ul.breadcrumb li {
+                display: inline;
+            }
+            ul.breadcrumb li+li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+            ul.breadcrumb li a {
+                color: green;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div>
+            <ul class="breadcrumb">
+                {% if user %}
+                    <li><a href="{{ url_for('index') }}">首页</a></li>
+                    <li><a href="{{ url_for('history') }}">{{ user.username }}</a></li>
+                    <li><a href="{{ url_for('logout') }}">退出登录</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('index') }}">首页</a></li>
+                    <li><a href="{{ url_for('login') }}">登录</a></li>
+                    <li><a href="{{ url_for('register') }}">注册</a></li>
+                {% endif %}
+		    </ul>
+        </div>
+
+        <hr>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ur>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ur>
+            {% endif %}
+        {% endwith %}
+
+        <div>
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </body>
+</html>

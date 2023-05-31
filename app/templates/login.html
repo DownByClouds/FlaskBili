@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="login-box">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <h1>登录</h1>
+            <div class="form">
+                <div class="item">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    {{ form.username(type="text", placeholder="Username") }}
+                </div>
+                <div class="item">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    {{ form.password(type="password", placeholder="Password") }}
+                </div>
+
+                <div class="item_1">
+                    {{ form.remember_me() }} {{ form.remember_me.label }}
+                </div>
+
+                <button type="submit">{{ form.submit() }}</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
